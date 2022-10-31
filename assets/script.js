@@ -33,6 +33,19 @@ function colorOfTimeBlock () {
     })
 }
 
-colorOfTimeBlock()
+// After refresh the input still stays on the page
+function saveAfterRefresh() {
 
+    $(".hour").each(function() {
+        var timeblockHour = $(this).text();
+        var currentDescription = localStorage.getItem(timeblockHour);
+
+        if(currentDescription !== null) {
+            $(this).siblings(".description").val(currentDescription);
+        }
+    });
+}
+
+colorOfTimeBlock()
+saveAfterRefresh()
 
