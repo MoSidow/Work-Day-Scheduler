@@ -9,11 +9,30 @@ var saveBtn = $(".saveBtn");
 saveBtn.on("click", function() {
 
     var Time = $(this).siblings(".hour").text();
-
     var description = $(this).siblings(".description").val();
-
     localStorage.setItem(Time, description);
 
 });
+
+
+// Determines colour of timeblock, whether it is future, present or past.
+function colorOfTimeBlock () {
+    var currentHour = moment().hours();
+
+    $(".time-block").each(function() {
+        var timeblockHour = parseInt($(this).attr("id"));
+
+        if (timeblockHour > currentHour) {
+            $(this).addClass("future");
+        }   else if (timeblockHour === currentHour) {
+            $(this).addClass("present")
+        } else {
+            $(this).addClass("past")
+        }
+        
+    })
+}
+
+colorOfTimeBlock()
 
 
